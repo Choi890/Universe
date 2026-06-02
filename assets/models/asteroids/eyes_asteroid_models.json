@@ -1,0 +1,58 @@
+{
+  "bennu": {
+    "eyes_id": "101955_bennu",
+    "url": "models/101955_bennu/Bennu.gltf",
+    "rotate": {
+      "x": 83.0,
+      "z": -168.0
+    },
+    "local": "assets/models/asteroids/bennu/Bennu.gltf",
+    "source": "https://eyes.nasa.gov/assets/static/models/101955_bennu/Bennu.gltf"
+  },
+  "vesta": {
+    "eyes_id": "4_vesta",
+    "url": "models/4_vesta/4_vesta.gltf",
+    "rotate": {
+      "x": 90.0
+    },
+    "local": "assets/models/asteroids/vesta/4_vesta.gltf",
+    "source": "https://eyes.nasa.gov/assets/static/models/4_vesta/4_vesta.gltf"
+  },
+  "eros": {
+    "eyes_id": "433_eros",
+    "url": "models/433_eros/433_eros.gltf",
+    "local": "assets/models/asteroids/eros/433_eros.gltf",
+    "source": "https://eyes.nasa.gov/assets/static/models/433_eros/433_eros.gltf"
+  },
+  "gaspra": {
+    "eyes_id": "951_gaspra",
+    "url": "models/951_gaspra/gaspra.gltf",
+    "local": "assets/models/asteroids/gaspra/gaspra.gltf",
+    "source": "https://eyes.nasa.gov/assets/static/models/951_gaspra/gaspra.gltf"
+  },
+  "ida": {
+    "eyes_id": "243_ida",
+    "url": "models/generic/asteroid_2/generic_asteroid_2.gltf",
+    "rotate": {
+      "y": 90.0
+    },
+    "scale": [
+      24.180000000000003,
+      33.019999999999996,
+      77.74
+    ],
+    "local": "assets/models/asteroids/ida/generic_asteroid_2.gltf",
+    "source": "https://eyes.nasa.gov/assets/static/models/generic/asteroid_2/generic_asteroid_2.gltf"
+  },
+  "mathilde": {
+    "eyes_id": "253_mathilde",
+    "url": "models/generic/asteroid_3/generic_asteroid_3.gltf",
+    "scale": [
+      33.0,
+      24.0,
+      23.0
+    ],
+    "local": "assets/models/asteroids/mathilde/generic_asteroid_3.gltf",
+    "source": "https://eyes.nasa.gov/assets/static/models/generic/asteroid_3/generic_asteroid_3.gltf"
+  }
+}

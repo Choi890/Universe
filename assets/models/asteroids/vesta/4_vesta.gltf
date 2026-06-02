@@ -1,0 +1,138 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v0.9.36",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Vesta"
+        }
+    ],
+    "materials" : [
+        {
+            "name" : "vesta.003",
+            "normalTexture" : {
+                "index" : 0,
+                "texCoord" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 1,
+                    "texCoord" : 0
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.8500000238418579
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Sphere.031",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        },
+        {
+            "source" : 1
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "vesta_n",
+            "uri" : "vesta_n.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "vesta_04",
+            "uri" : "vesta_04.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 17558,
+            "max" : [
+                290803.03125,
+                232133.609375,
+                281385.09375
+            ],
+            "min" : [
+                -282476.96875,
+                -230729.375,
+                -274842.90625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 17558,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 17558,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 103680,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 210696,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 210696,
+            "byteOffset" : 210696
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 140464,
+            "byteOffset" : 421392
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 207360,
+            "byteOffset" : 561856
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 769216,
+            "uri" : "4_vesta.bin"
+        }
+    ]
+}
