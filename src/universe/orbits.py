@@ -9,7 +9,8 @@ from .solar_data import AU_KM, J2000_JD, OrbitalElements, SimpleOrbit
 
 
 def julian_day(moment: datetime) -> float:
-    # Normalize to UTC before converting civil time into the astronomical Julian day.
+    # 입력 시간이 timezone을 갖고 있지 않으면 UTC로 보고, 모든 계산 기준을 UTC로 맞춘다.
+    # Julian day는 행성 위치 계산의 공통 시간 좌표라서 지역 시간 차이를 제거해야 한다.
     if moment.tzinfo is None:
         moment = moment.replace(tzinfo=timezone.utc)
     moment = moment.astimezone(timezone.utc)
@@ -42,7 +43,8 @@ def wrap_degrees(value: float) -> float:
 
 
 def solve_kepler_radians(mean_anomaly_degrees: float, eccentricity: float, iterations: int = 12) -> float:
-    # Newton iterations solve the eccentric anomaly used by every elliptical orbit path.
+    # 평균 근점 이각으로부터 케플러 방정식을 풀어 이심 근점 이각을 구한다.
+    # 타원 궤도 위치를 계산하려면 이 값이 필요하므로 Newton 반복으로 빠르게 수렴시킨다.
     mean_anomaly = math.radians(wrap_degrees(mean_anomaly_degrees))
     eccentric_anomaly = mean_anomaly if eccentricity < 0.8 else math.pi
 
@@ -102,7 +104,8 @@ def _rotate_orbital_plane(
 
 
 def heliocentric_position_au(elements: OrbitalElements, jd: float) -> np.ndarray:
-    # NASA/JPL-style orbital elements are advanced to the requested date before plane rotation.
+    # 현재 Julian day에 맞춰 공전 요소를 보정한 뒤 태양 중심 좌표를 계산한다.
+    # 먼저 궤도면 안의 위치를 구하고, 이후 기울기/노드/근일점 경도를 반영해 3D 좌표로 회전한다.
     current = elements_at(elements, jd)
     centuries = current["centuries"]
 

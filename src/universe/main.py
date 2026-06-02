@@ -174,7 +174,8 @@ class MinorOrbitLabel:
 
 
 def _load_ursina() -> dict[str, Any]:
-    # Delay importing Ursina until launch so tests can import math helpers without a graphics runtime.
+    # Ursina와 Panda3D는 그래픽 런타임이 필요하므로 앱 실행 시점에만 import한다.
+    # 이렇게 하면 테스트 코드가 궤도 계산 함수만 import할 때 3D 엔진 의존성 때문에 실패하지 않는다.
     try:
         from ursina import (
             AmbientLight,
@@ -356,7 +357,8 @@ def configure_panda_runtime_options() -> None:
 
 class SolarSystemScene:
     def __init__(self, api: dict[str, Any]):
-        # The scene controller keeps all runtime entities, simulation time, and camera state together.
+        # SolarSystemScene은 3D 장면의 중앙 컨트롤러다.
+        # 천체 Entity, 궤도선, 카메라 상태, 시뮬레이션 시간, UI 텍스트를 모두 보관하고 매 프레임 갱신한다.
         self.api = api
         self.Entity = api["Entity"]
         self.Mesh = api["Mesh"]
@@ -1725,7 +1727,8 @@ void main() {
             minor_label.entity.enabled = self.show_labels and self.show_orbits
 
     def update(self) -> None:
-        # Ursina calls this every frame; advance time, bodies, camera, lighting, and UI together.
+        # Ursina가 매 프레임 호출하는 업데이트 루프다.
+        # 시뮬레이션 시간을 진행하고, 천체 위치/소행성/카메라/조명/라벨/UI를 같은 프레임 기준으로 갱신한다.
         real_dt = max(0.0, self.time.dt)
         dt = min(real_dt, 0.05)
         simulated_days_delta = 0.0
@@ -1748,7 +1751,8 @@ void main() {
         self.update_ui()
 
     def input(self, key: str) -> None:
-        # Keyboard and mouse shortcuts control camera mode, labels, orbits, moons, and time scale.
+        # 사용자의 키보드/마우스 입력을 시뮬레이터 명령으로 변환한다.
+        # 카메라 확대/자유비행/행성 추적/라벨/궤도선/달 표시/시간 배속이 여기서 토글된다.
         if key == "scroll up":
             if self.camera_mode == "free":
                 self.free_speed = min(6000.0, self.free_speed * 1.15)
