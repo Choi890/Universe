@@ -9,6 +9,7 @@ from .solar_data import AU_KM, J2000_JD, OrbitalElements, SimpleOrbit
 
 
 def julian_day(moment: datetime) -> float:
+    # Normalize to UTC before converting civil time into the astronomical Julian day.
     if moment.tzinfo is None:
         moment = moment.replace(tzinfo=timezone.utc)
     moment = moment.astimezone(timezone.utc)
@@ -41,6 +42,7 @@ def wrap_degrees(value: float) -> float:
 
 
 def solve_kepler_radians(mean_anomaly_degrees: float, eccentricity: float, iterations: int = 12) -> float:
+    # Newton iterations solve the eccentric anomaly used by every elliptical orbit path.
     mean_anomaly = math.radians(wrap_degrees(mean_anomaly_degrees))
     eccentric_anomaly = mean_anomaly if eccentricity < 0.8 else math.pi
 
@@ -100,6 +102,7 @@ def _rotate_orbital_plane(
 
 
 def heliocentric_position_au(elements: OrbitalElements, jd: float) -> np.ndarray:
+    # NASA/JPL-style orbital elements are advanced to the requested date before plane rotation.
     current = elements_at(elements, jd)
     centuries = current["centuries"]
 
@@ -199,4 +202,3 @@ def moon_position_km(
 
 def au_to_km(position_au: np.ndarray) -> np.ndarray:
     return position_au * AU_KM
-

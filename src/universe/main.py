@@ -174,6 +174,7 @@ class MinorOrbitLabel:
 
 
 def _load_ursina() -> dict[str, Any]:
+    # Delay importing Ursina until launch so tests can import math helpers without a graphics runtime.
     try:
         from ursina import (
             AmbientLight,
@@ -355,6 +356,7 @@ def configure_panda_runtime_options() -> None:
 
 class SolarSystemScene:
     def __init__(self, api: dict[str, Any]):
+        # The scene controller keeps all runtime entities, simulation time, and camera state together.
         self.api = api
         self.Entity = api["Entity"]
         self.Mesh = api["Mesh"]
@@ -1723,6 +1725,7 @@ void main() {
             minor_label.entity.enabled = self.show_labels and self.show_orbits
 
     def update(self) -> None:
+        # Ursina calls this every frame; advance time, bodies, camera, lighting, and UI together.
         real_dt = max(0.0, self.time.dt)
         dt = min(real_dt, 0.05)
         simulated_days_delta = 0.0
@@ -1745,6 +1748,7 @@ void main() {
         self.update_ui()
 
     def input(self, key: str) -> None:
+        # Keyboard and mouse shortcuts control camera mode, labels, orbits, moons, and time scale.
         if key == "scroll up":
             if self.camera_mode == "free":
                 self.free_speed = min(6000.0, self.free_speed * 1.15)
